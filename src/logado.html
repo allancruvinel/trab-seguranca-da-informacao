@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <h1>VOCE ESTA LOGADO</h1>
+    <form action="/changepass" method="post">
+        <input type="password" name="oldpass" placeholder="Senha Antiga" id="">
+        <input type="password" name="newpass" placeholder="Nova Senha" id="">
+        <button type="submit">Atualizar</button>
+    </form>
+    <button onclick="deslogar()">Deslogar</button>
+
+
+
+
+</body>
+<script>
+    function deslogar() {
+        document.cookie = 'aut' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        window.location.reload();
+    }
+</script>
+
+</html>
