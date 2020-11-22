@@ -73,7 +73,6 @@ app.post('/register', async (req, res) => {
     });
 
 });
-
 app.post('/login', async (req, res) => {
     const { user, pass } = req.body;
     const id = await Connection('users').where('user', user).select('id', 'pass', 'accountexpiration', 'passexpiration', 'emailconfirmed').first();
@@ -123,7 +122,6 @@ app.post('/login', async (req, res) => {
 
 
 });
-
 app.post('/confirmlogin', async (req, res) => {
 
     const { pass } = req.body;
@@ -140,7 +138,6 @@ app.post('/confirmlogin', async (req, res) => {
     await Connection('users').where('id', id.id).update({ pass: bcrypt.hashSync(pass, 10), emailconfirmed: 1, passexpiration: 9999999999999, accountexpiration: 9999999999999 })
     return res.send('<div>Conta Confirmada <a href="/login">CLIQUE AQUI</a> </div>');
 })
-
 app.post('/recoverpass', async (req, res) => {
     const { user } = req.body;
     const id = await Connection('users').where('user', user).select('id', 'pass', 'email').first();
@@ -181,7 +178,6 @@ app.post('/recoverpass', async (req, res) => {
         return res.send('<div>Usuário ou Senha Não Encontrado <a href="/login">CLIQUE AQUI PARA VOLTAR</a> </div>');
     }
 })
-
 app.post('/changepass', async (req, res) => {
 
     const { oldpass,newpass } = req.body;

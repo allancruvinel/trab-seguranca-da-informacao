@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>confirm Login</title>
 </head>
+
 <body>
     <form method="POST" action="/confirmlogin">
-    <input type="password" name="pass" placeholder="nova senha">
-    <input type="submit" value="atualizar">
+        <input type="password" name="pass" id="pass" placeholder="nova senha">
+        <input disabled="true" type="submit" id="submit" value="atualizar">
     </form>
+    <p>a Senha precisa ter letras maiusculas, minusculas caracteres
+        especiais e ter no minino 8 caracteres para salvar </p>
 </body>
+<script>
+    var pass = document.getElementById('pass');
+    var button = document.getElementById('submit');
+    pass.addEventListener('keyup', () => {
+        checkPassword(pass.value);
+    })
+    function checkPassword(pass) {
+        var forca = 0;
+        if (pass.match(/[a-zA-Z0-9][a-zA-Z0-9]+/)) {
+            forca++;
+            console.log('1 if');
+        }
+        if (pass.match(/[@!£$%^&*()~<>?_#-]+/)) {
+            forca++;
+            console.log('3 if');
+        }
+        if (pass.length >= 8) {
+            forca++;
+            console.log('4 if');
+        }
+        if (forca >= 3) {
+            button.disabled = false;
+        } else {
+            button.disabled = true;
+        };
+
+    }
+</script>
+
 </html>
